@@ -37,36 +37,6 @@ html,body{
 .bar.out{
     display: none;
 }
-.no1{
-    top:7%;
-}
-.no2{
-    top:15%;
-}
-.no3{
-    top:23%;
-}
-.no4{
-    top:31%;
-}
-.no5{
-    top:39%;
-}
-.no6{
-    top:47%;
-}
-.no7{
-    top:55%;
-}
-.no8{
-    top:63%;
-}
-.no9{
-    top:71%;
-}
-.no10{
-    top:79%;
-}
 </style>
 
 </head>
@@ -107,8 +77,20 @@ html,body{
     <div class="bar out" style="  top:87%;">
         <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
     </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
 
-    <div><button id="click" >click</button><button id="asd" >clisck</button> <span id='date' style="color: white">date</span></div>
+    <div><button id="click" >click</button><button id="auto" >auto</button> <span id='date' style="color: white">date</span></div>
 
 
   
@@ -129,17 +111,17 @@ function reorder(){
         if($(this).hasClass("top")){
             var order = map[$(this).attr("rank")];
             //$("#click").text($("#click").text()+order);
-            $(this).animate({top:position[order]+"%"},2000);
+            $(this).animate({top:position[order]+"%"},1000);
         }
 
         else{
-            $(this).animate({"top":"87%"},2000);
+            $(this).animate({"top":"87%"},1000);
             $(this).attr("value","");
             $(this).addClass("out");
             $(this).hide();
         }
     });
-    setTimeout(function(){$(".top").removeClass("top");},400);
+    $(".top").removeClass("top");
 }
 function update(raw){
     var info = raw.split('+');
@@ -160,11 +142,11 @@ function update(raw){
         newPlayer.find(".point").text(info[3]);
         newPlayer.addClass("top");
         newPlayer.show();
-        setTimeout(function(){newPlayer.removeClass("out");},300);
-        //new top10!
+        newPlayer.removeClass("out");
+        
     }
     else{
-        player.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},2000);
+        player.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},1000);
         player.attr("value",info[1]);
         player.attr("rank",info[0]);
         player.find(".name").text(info[1]);
@@ -173,26 +155,27 @@ function update(raw){
         player.addClass("top");
     }
     
-    //setTimeout(function(){reorder();},1000);
 }
 function setup(raw){
     var info = raw.split('+');
     if(info[0] == 1) maxPoint= 1200 + parseInt(info[3]);
     var t = $("."+map[info[0]]);
-    t.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},2000);
+    t.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},1000);
     t.attr("value",info[1]);
     t.attr("rank",info[0]);
     t.find(".name").text(info[1]);
     t.find(".age").text("("+info[2]+")");
     t.find(".point").text(info[3]);
-    setTimeout(function(){t.removeClass(map[info[0]]);},300);
+    t.removeClass(map[info[0]]);
 
 }
 $(document).ready(function(){
-    $("#asd").click(function(){
-        reorder();
+    $("#auto").click(function(){
+        $("#click").hide();
+        setInterval(function(){$("#click").click();},1000);
     });
     $("#click").click(function(){
+        $("#auto").hide();
         detail = rank[cur].split(',');
         $("#date").text(detail[0]);
         for(var i = 1; i < 11;i++){
@@ -202,7 +185,7 @@ $(document).ready(function(){
                 update(detail[i]);
             }
         }
-        if(cur != 0) setTimeout(reorder(),300);
+        if(cur != 0) reorder();
         cur ++;
         cur = cur % max;
         
