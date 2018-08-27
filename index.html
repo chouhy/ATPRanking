@@ -1,0 +1,213 @@
+<html lang="en"><head>
+
+<meta charset="UTF-8">
+
+<title>Animation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    
+
+  
+<style>
+html,body{
+    background-color: black;
+}
+.bar {
+    display: block;
+    position: absolute;
+    background: inherit;
+    width:50%;
+    height:5%;
+
+}
+
+.bar .bar-inner{
+    height: 100%;
+    display: inline-block;
+    background-color: blue;
+    padding-top: 1.1%;
+    padding-left: 2%;
+    color: white;
+} 
+.bar .point{
+    color: white;
+    vertical-align: top;
+}
+.bar.out{
+    display: none;
+}
+.no1{
+    top:7%;
+}
+.no2{
+    top:15%;
+}
+.no3{
+    top:23%;
+}
+.no4{
+    top:31%;
+}
+.no5{
+    top:39%;
+}
+.no6{
+    top:47%;
+}
+.no7{
+    top:55%;
+}
+.no8{
+    top:63%;
+}
+.no9{
+    top:71%;
+}
+.no10{
+    top:79%;
+}
+</style>
+
+</head>
+
+<body>
+    <div class="bar no1"  style=" top:7%;" >
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar no2" style=" top:15%;" >
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar no3" style=" top:23%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar no4" style=" top:31%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar no5" style=" top:39%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar no6" style=" top:47%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar no7" style=" top:55%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar no8" style=" top:63%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar no9" style=" top:71%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+    <div class="bar no10" style=" top:79%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+
+
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
+    </div>
+
+    <div><button id="click" >click</button><button id="asd" >clisck</button> <span id='date' style="color: white">date</span></div>
+
+
+  
+
+<script>
+var rank,max;
+var cur = 0; 
+$.get("./data/ATPRankingHistory",function(data,status){
+        rank = data.split('\n');
+        max = rank.length -1;
+});
+var maxPoint;
+var map = [0,'no1','no2','no3','no4','no5','no6','no7','no8','no9','no10'];
+var position = {no1:7,no2:15,no3:23,no4:31,no5:39,no6:47,no7:55,no8:63,no9:71,no10:79};
+function reorder(){
+    $.each($(".bar"),function(){
+        
+        if($(this).hasClass("top")){
+            var order = map[$(this).attr("rank")];
+            //$("#click").text($("#click").text()+order);
+            $(this).animate({top:position[order]+"%"},2000);
+        }
+
+        else{
+            $(this).animate({"top":"87%"},2000);
+            $(this).attr("value","");
+            $(this).addClass("out");
+            $(this).hide();
+        }
+    });
+    setTimeout(function(){$(".top").removeClass("top");},400);
+}
+function update(raw){
+    var info = raw.split('+');
+    if(info[0] == 1) maxPoint= 1200 + parseInt(info[3]);
+
+    //info[1] = player name
+    //info[2] = age
+    //info[3] = point
+    var player = $("[value =\""+info[1]+"\" ]");
+    //console.log(info[1]);
+    if(player.length == 0){
+        var newPlayer = $(".bar.out").first();
+        newPlayer.find("span").first().css('width',(info[3]/maxPoint *85 +15)+"%");
+        newPlayer.attr("value",info[1]);
+        newPlayer.attr("rank",info[0]);
+        newPlayer.find(".name").text(info[1]);
+        newPlayer.find(".age").text("("+info[2]+")");
+        newPlayer.find(".point").text(info[3]);
+        newPlayer.addClass("top");
+        newPlayer.show();
+        setTimeout(function(){newPlayer.removeClass("out");},300);
+        //new top10!
+    }
+    else{
+        player.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},2000);
+        player.attr("value",info[1]);
+        player.attr("rank",info[0]);
+        player.find(".name").text(info[1]);
+        player.find(".age").text("("+info[2]+")");
+        player.find(".point").text(info[3]);
+        player.addClass("top");
+    }
+    
+    //setTimeout(function(){reorder();},1000);
+}
+function setup(raw){
+    var info = raw.split('+');
+    if(info[0] == 1) maxPoint= 1200 + parseInt(info[3]);
+    var t = $("."+map[info[0]]);
+    t.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},2000);
+    t.attr("value",info[1]);
+    t.attr("rank",info[0]);
+    t.find(".name").text(info[1]);
+    t.find(".age").text("("+info[2]+")");
+    t.find(".point").text(info[3]);
+    setTimeout(function(){t.removeClass(map[info[0]]);},300);
+
+}
+$(document).ready(function(){
+    $("#asd").click(function(){
+        reorder();
+    });
+    $("#click").click(function(){
+        detail = rank[cur].split(',');
+        $("#date").text(detail[0]);
+        for(var i = 1; i < 11;i++){
+            if (cur == 0)  setup(detail[i]);
+            else {
+                //console.log(i);
+                update(detail[i]);
+            }
+        }
+        if(cur != 0) setTimeout(reorder(),300);
+        cur ++;
+        cur = cur % max;
+        
+    });
+});
+
+</script>
+</body></html>
