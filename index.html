@@ -13,7 +13,13 @@
 html,body{
     background-color: black;
 }
+.rankTags{
+    left:0;
+    position: absolute;
+    color: white;
+}
 .bar {
+    left:3.5%;
     display: block;
     position: absolute;
     background: inherit;
@@ -30,6 +36,14 @@ html,body{
     padding-left: 2%;
     color: white;
 } 
+.name{
+    text-shadow:  1px 0 black;
+    font-weight: bold;
+}
+.age{
+    text-shadow: 1px 0 black;
+    font-weight: bold;
+}
 .bar .point{
     color: white;
     vertical-align: top;
@@ -120,12 +134,28 @@ html,body{
         <span class="bar-inner" style="width:50%;"><span class="name"></span><span class="age"></span></span><span class="point">111</span>
     </div>
 
+    <div class="rankTags" style=" top:8%;" >NO.1</div>
+    <div class="rankTags" style=" top:16%;" >NO.2</div>
+    <div class="rankTags" style=" top:24%;" >NO.3</div>
+    <div class="rankTags" style=" top:32%;" >NO.4</div>
+    <div class="rankTags" style=" top:40%;" >NO.5</div>
+    <div class="rankTags" style=" top:48%;" >NO.6</div>
+    <div class="rankTags" style=" top:56%;" >NO.7</div>
+    <div class="rankTags" style=" top:64%;" >NO.8</div>
+    <div class="rankTags" style=" top:72%;" >NO.9</div>
+    <div class="rankTags" style=" top:80%;" >NO.10</div>
+
     <div><button id="click" >click</button><button id="auto" >auto</button> <span id='date' style="color: white">date</span></div>
 
 
   
 
 <script>
+var color = ["#ff66ff","#ff0000","#0066cc","#009933",
+            "#3333ff","#ff6600","#73e600","#a64dff",
+            "#ff1a1a","#004280","#ff5500","#ff3300",
+            "#53c68c","#40bf40","#0066ff","#ff4000"
+            ];
 var rank,max;
 var cur = 0; 
 $.get("./data/ATPRankingHistory",function(data,status){
@@ -142,12 +172,12 @@ function reorder(){
             
             //$("#click").text($("#click").text()+order);
             
-            $(this).animate({top:position[order]+"%"},500);
+            $(this).animate({top:position[order]+"%"},250);
 
         }
 
         else{
-            $(this).animate({"top":"87%"},500);
+            $(this).animate({"top":"87%"},250);
             $(this).attr("value","");
             $(this).find("span").first().removeClass(order);
             $(this).addClass("out");
@@ -168,7 +198,7 @@ function update(raw){
     if(player.length == 0){
         //new top10
         var newPlayer = $(".bar.out").first();
-        newPlayer.find("span").first().css('width',(info[3]/maxPoint *85 +15)+"%");
+        newPlayer.find("span").first().css({"width":(info[3]/maxPoint *75 +25)+"%","background-color":color[Math.floor(Math.random() * 16)]});
         newPlayer.attr("value",info[1]);
         newPlayer.attr("rank",info[0]);
         newPlayer.find(".name").text(info[1]);
@@ -180,8 +210,8 @@ function update(raw){
         
     }
     else{
-        player.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},500);
-        player.find("span").first().removeClass(map[player.attr("rank")]).addClass(map[info[0]]);
+        player.find("span").first().animate({'width':(info[3]/maxPoint *75 +25)+"%"},250);
+        player.find("span").first().removeClass(map[player.attr("rank")]);
         player.attr("value",info[1]);
         player.attr("rank",info[0]);
         player.find(".name").text(info[1]);
@@ -195,7 +225,8 @@ function setup(raw){
     var info = raw.split('+');
     if(info[0] == 1) maxPoint= 2500 + parseInt(info[3]);
     var t = $("."+map[info[0]]);
-    t.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},500).addClass(map[info[0]]);
+    t.find("span").first().animate({'width':(info[3]/maxPoint *75 +25)+"%"},250).css("background-color",color[Math.floor(Math.random() * 16)]);
+
     t.attr("value",info[1]);
     t.attr("rank",info[0]);
     t.find(".name").text(info[1]);
@@ -206,9 +237,11 @@ function setup(raw){
 
 }
 $(document).ready(function(){
+    $("#click").hide();
     $("#auto").click(function(){
         $("#click").hide();
-        setInterval(function(){if(cur < max) $("#click").click();},800);
+        var timer;
+        timer = setInterval(function(){if(cur < max) $("#click").click(); else clearInterval(timer);},500);
     });
     $("#click").click(function(){
         $("#auto").hide();
