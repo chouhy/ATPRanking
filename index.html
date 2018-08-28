@@ -37,6 +37,36 @@ html,body{
 .bar.out{
     display: none;
 }
+.bar .bar-inner.no1{
+    background-color: red;
+}
+.bar .bar-inner.no2{
+    background-color: red;
+}
+.bar .bar-inner.no3{
+    background-color: red;
+}
+.bar .bar-inner.no4{
+    background-color: red;
+}
+.bar .bar-inner.no5{
+    background-color: orange;
+}
+.bar .bar-inner.no6{
+    background-color: orange;
+}
+.bar .bar-inner.no7{
+    background-color: orange;
+}
+.bar .bar-inner.no8{
+    background-color: green;
+}
+.bar .bar-inner.no9{
+    background-color: green;
+}
+.bar .bar-inner.no10{
+    background-color: green;
+}
 </style>
 
 </head>
@@ -107,25 +137,28 @@ var map = [0,'no1','no2','no3','no4','no5','no6','no7','no8','no9','no10'];
 var position = {no1:7,no2:15,no3:23,no4:31,no5:39,no6:47,no7:55,no8:63,no9:71,no10:79};
 function reorder(){
     $.each($(".bar"),function(){
-        
+        var order = map[$(this).attr("rank")];
         if($(this).hasClass("top")){
-            var order = map[$(this).attr("rank")];
+            
             //$("#click").text($("#click").text()+order);
-            $(this).animate({top:position[order]+"%"},1000);
+            
+            $(this).animate({top:position[order]+"%"},500);
+
         }
 
         else{
-            $(this).animate({"top":"87%"},1000);
+            $(this).animate({"top":"87%"},500);
             $(this).attr("value","");
+            $(this).find("span").first().removeClass(order);
             $(this).addClass("out");
-            $(this).hide();
+            $(this).fadeOut(200);
         }
     });
     $(".top").removeClass("top");
 }
 function update(raw){
     var info = raw.split('+');
-    if(info[0] == 1) maxPoint= 1200 + parseInt(info[3]);
+    if(info[0] == 1) maxPoint= 2500 + parseInt(info[3]);
 
     //info[1] = player name
     //info[2] = age
@@ -133,6 +166,7 @@ function update(raw){
     var player = $("[value =\""+info[1]+"\" ]");
     //console.log(info[1]);
     if(player.length == 0){
+        //new top10
         var newPlayer = $(".bar.out").first();
         newPlayer.find("span").first().css('width',(info[3]/maxPoint *85 +15)+"%");
         newPlayer.attr("value",info[1]);
@@ -146,7 +180,8 @@ function update(raw){
         
     }
     else{
-        player.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},1000);
+        player.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},500);
+        player.find("span").first().removeClass(map[player.attr("rank")]).addClass(map[info[0]]);
         player.attr("value",info[1]);
         player.attr("rank",info[0]);
         player.find(".name").text(info[1]);
@@ -158,21 +193,22 @@ function update(raw){
 }
 function setup(raw){
     var info = raw.split('+');
-    if(info[0] == 1) maxPoint= 1200 + parseInt(info[3]);
+    if(info[0] == 1) maxPoint= 2500 + parseInt(info[3]);
     var t = $("."+map[info[0]]);
-    t.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},1000);
+    t.find("span").first().animate({'width':(info[3]/maxPoint *85 +15)+"%"},500).addClass(map[info[0]]);
     t.attr("value",info[1]);
     t.attr("rank",info[0]);
     t.find(".name").text(info[1]);
     t.find(".age").text("("+info[2]+")");
     t.find(".point").text(info[3]);
-    t.removeClass(map[info[0]]);
+    //t.removeClass(map[info[0]]);
+
 
 }
 $(document).ready(function(){
     $("#auto").click(function(){
         $("#click").hide();
-        setInterval(function(){$("#click").click();},1000);
+        setInterval(function(){if(cur < max) $("#click").click();},800);
     });
     $("#click").click(function(){
         $("#auto").hide();
@@ -187,7 +223,7 @@ $(document).ready(function(){
         }
         if(cur != 0) reorder();
         cur ++;
-        cur = cur % max;
+        //cur = cur % max;
         
     });
 });
