@@ -12,52 +12,59 @@
 <style>
 html,body{
     background-color: black;
+    font-size: 1.2vw;
+}
+.topline{
+    max-height: 6vh;
 }
 .rankTags{
     left:0;
+    max-width: 3vw;
     position: absolute;
     color: white;
+    display: none;
 }
 .bar {
-    left:3.5%;
-    display: block;
+    left:3.5vw;
+    display: flex;
     position: absolute;
-    background: inherit;
-    width:60%;
-    height:5%;
+    align-items: center;
+    width:50vw;
+    height:7vh;
 
 }
 
 .bar .bar-inner{
+    display: inline-flex;
     height: 100%;
-    display: inline-block;
-    background-color: blue;
-    padding-top: 1.1%;
-    padding-left: 2%;
+    align-items: center;
     color: white;
 } 
+.bar .bar-inner img{
+    padding-top: 1%;
+    padding-left: 1%;
+    padding-bottom: 1%;
+}
 .pic{
     position:absolute;
-    max-height: 90%;
-    left: 65%;
+    height: 90vh;
+    width: 35vw;
+    left: 60vw;
     color: white;
-    text-shadow:  1px 0 black;
+    text-shadow:  0.1vw 0 black;
     font-weight: bold;
 }
 .name{
-    text-shadow:  1px 0 black;
+    text-shadow:  0.1vw 0 black;
     font-weight: bold;
 }
 .age{
-    text-shadow: 1px 0 black;
+    text-shadow: 0.1vw 0 black;
     font-weight: bold;
 }
 .bar .point{
     color: white;
-    vertical-align: top;
-}
-.bar.out{
-    display: none;
+    vertical-align: center;
 }
 .bar .bar-inner.no1{
     background-color: red;
@@ -94,102 +101,135 @@ html,body{
 </head>
 
 <body>
-    <div class="bar no1"  style=" top:7%;" >
+    <div class="bar no1"  style=" top:7vh;" >
         <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-            <span class="name"></span><span class="age"></span></span><span class="point">111</span>
+        <img height="70%" align="top" src="" style="display:none">
+            <span class="name"></span><span class="age"></span></span><span class="point"></span>
     </div>
-    <div class="bar no2" style=" top:15%;" >
+    <div class="bar no2" style=" top:15vh;" >
         <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-            <span class="name"></span><span class="age"></span></span><span class="point">111</span>
+        <img height="70%" align="top" src="" style="display:none">
+            <span class="name"></span><span class="age"></span></span><span class="point"></span>
     </div>
-    <div class="bar no3" style=" top:23%;">
+    <div class="bar no3" style=" top:23vh;">
         <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-            <span class="name"></span><span class="age"></span></span><span class="point">111</span>
+        <img height="70%" align="top" src="" style="display:none">
+            <span class="name"></span><span class="age"></span></span><span class="point"></span>
     </div>
-    <div class="bar no4" style=" top:31%;">
+    <div class="bar no4" style=" top:31vh;">
         <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
     </div>
-    <div class="bar no5" style=" top:39%;">
+    <div class="bar no5" style=" top:39vh;">
         <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
     </div>
-    <div class="bar no6" style=" top:47%;">
+    <div class="bar no6" style=" top:47vh;">
         <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
     </div>
-    <div class="bar no7" style=" top:55%;">
+    <div class="bar no7" style=" top:55vh;">
         <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
     </div>
-    <div class="bar no8" style=" top:63%;">
+    <div class="bar no8" style=" top:63vh;">
         <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
     </div>
-    <div class="bar no9" style=" top:71%;">
+    <div class="bar no9" style=" top:71vh;">
         <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
     </div>
-    <div class="bar no10" style=" top:79%;">
+    <div class="bar no10" style=" top:79vh;">
         <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
-    </div>
-
-
-    <div class="bar out" style="  top:87%;">
-        <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
-    </div>
-    <div class="bar out" style="  top:87%;">
-        <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
-    </div>
-    <div class="bar out" style="  top:87%;">
-        <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
-    </div>
-    <div class="bar out" style="  top:87%;">
-        <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
-    </div>
-    <div class="bar out" style="  top:87%;">
-        <span class="bar-inner" style="width:50%;">
-        <img height="90%" align="top" src="" onerror="$(this).hide()">
-        <span class="name"></span><span class="age"></span></span><span class="point">111</span>
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
     </div>
 
-    <div class="rankTags" style=" top:9%;" >NO.1</div>
-    <div class="rankTags" style=" top:17%;" >NO.2</div>
-    <div class="rankTags" style=" top:25%;" >NO.3</div>
-    <div class="rankTags" style=" top:33%;" >NO.4</div>
-    <div class="rankTags" style=" top:41%;" >NO.5</div>
-    <div class="rankTags" style=" top:49%;" >NO.6</div>
-    <div class="rankTags" style=" top:57%;" >NO.7</div>
-    <div class="rankTags" style=" top:65%;" >NO.8</div>
-    <div class="rankTags" style=" top:73%;" >NO.9</div>
-    <div class="rankTags" style=" top:81%;" >NO.10</div>
 
-    <div><button id="click" >click</button><button id="auto" >auto</button> <span id='date' style="color: white">date</span></div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;">
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;">
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;">
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;">
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;">
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;">
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;">
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;">
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;">
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
+    </div>
+    <div class="bar out" style="  top:87%;">
+        <span class="bar-inner" style="width:50%;">
+        <img height="70%" align="top" src="" style="display:none">
+        <span class="name"></span><span class="age"></span></span><span class="point"></span>
+    </div>
+
+    <div class="rankTags" style=" top:9vh;" >NO.1</div>
+    <div class="rankTags" style=" top:17vh;" >NO.2</div>
+    <div class="rankTags" style=" top:25vh;" >NO.3</div>
+    <div class="rankTags" style=" top:33vh;" >NO.4</div>
+    <div class="rankTags" style=" top:41vh;" >NO.5</div>
+    <div class="rankTags" style=" top:49vh;" >NO.6</div>
+    <div class="rankTags" style=" top:57vh;" >NO.7</div>
+    <div class="rankTags" style=" top:65vh;" >NO.8</div>
+    <div class="rankTags" style=" top:73vh;" >NO.9</div>
+    <div class="rankTags" style=" top:81vh;" >NO.10</div>
+
+    <div class="topline"><button id="next" style="font-size: 1.2vw" >Next</button>
+        <button id="prev" style="font-size: 1.2vw" >Prev</button>
+        <button id="auto" style="font-size: 1.2vw" >auto/stop</button>
+        <button id="firstPoint" style="font-size: 1.2vw" >first week with points</button>
+        <button id="addYear" style="font-size: 1.2vw" >+52weeks</button>
+        <button id="big4" style="font-size: 1.2vw" >first big4 in top4</button>
+         <span id='date' style="color: white;"></span></div>
 <div id="num1s" ></div>
-    <div class="pic" style="display: none;"><span id ="picName"></span> 連續:<span id="consecWeek"></span><br><img id="number1Pic"  align="right" height="90%" src=""></div>
+    <div class="pic" style="display: none;"><span id ="picName"></span> .consecutive:<span id="consecWeek"></span><br><img id="number1Pic"  height="90%" src=""></div>
 
   
 
 <script>
+var isSet=0;
+var isAuto=0;
 var flag ='https://www.atpworldtour.com/en/~/media/images/flags/';
 var num1s=[];
 var color = ["#ff66ff","#ff0000","#0066cc","#009933",
@@ -198,10 +238,10 @@ var color = ["#ff66ff","#ff0000","#0066cc","#009933",
             "#53c68c","#40bf40","#0066ff","#ff4000"
             ];
 var rank,max;
-var cur = 0; 
+var cur = -1; 
 $.get("./data/ATPRankingHistory",function(data,status){
         rank = data.split('\n');
-        max = rank.length -1;
+        max = rank.length -2;
 });
 var maxPoint;
 var map = [0,'no1','no2','no3','no4','no5','no6','no7','no8','no9','no10'];
@@ -212,8 +252,8 @@ function reorder(){
         if($(this).hasClass("top")){
             
             //$("#click").text($("#click").text()+order);
-            if($(this).css("top") != position[order]+"%")
-                $(this).animate({top:position[order]+"%"},200);
+            if($(this).css("top") != position[order]+"vh")
+                $(this).animate({top:position[order]+"vh"},200);
             $(this).show(0);
 
         }
@@ -221,7 +261,7 @@ function reorder(){
         else{
             $(this).animate({"top":"87%"},200);
             $(this).attr("value","");
-            $(this).find("span").first().removeClass(order);
+            // $(this).find("span").first().removeClass(order);
             $(this).addClass("out");
             $(this).fadeOut(200);
         }
@@ -231,7 +271,7 @@ function reorder(){
 function update(raw){
 
     var info = raw.split('+');
-    if(info[0] == 1) maxPoint= 2500 + parseInt(info[4]);
+    if(info[0] == 1) maxPoint= 900 + parseInt(info[4]);
     if(info[0] == 1){
         if($("#number1Pic").attr("src") == "./number1s/"+info[2].replace(/\s+/g,'')+".png"){
             var week = parseInt($("#consecWeek").text());
@@ -278,9 +318,11 @@ function update(raw){
     }
 }
 function setup(raw){
+
+    $(".rankTags").show();
     var info = raw.split('+');
     if(info[0] == 1) {
-        maxPoint= 2500 + parseInt(info[4]);
+        maxPoint= 900 + parseInt(info[4]);
         $("#number1Pic").attr("src","./number1s/"+info[2].replace(/\s+/g,'')+".png");
         $(".pic").show();
         $("#picName").text(info[2]);
@@ -298,28 +340,72 @@ function setup(raw){
 
 
 }
-$(document).ready(function(){
-    $("#click").hide();
-    $("#auto").click(function(){
-        $("#click").hide();
-        var timer;
-        timer = setInterval(function(){if(cur < max) $("#click").click(); else clearInterval(timer);},500);
-    });
-    $("#click").click(function(){
-        $("#auto").hide();
-        detail = rank[cur].split(',');
-        $("#date").text(detail[0]);
-        for(var i = 1; i < 11;i++){
-            if (cur == 0)  setup(detail[i]);
-            else {
-                //console.log(i);
-                update(detail[i]);
-            }
+function setCurrentBar(index=0){
+    var detail = rank[index].split(',');
+    $("#date").text(detail[0]);
+    for(var i = 1; i < 11;i++){
+        if (isSet == 0) {
+            setup(detail[i]);
         }
-        if(cur != 0) reorder();
-        cur ++;
+        else {
+            //console.log(i);
+            update(detail[i]);
+        }
+    }
+    if(isSet != 0) reorder();
+    isSet = 1;
+}
+$(document).ready(function(){
+    //$("#click").hide();
+    $("#auto").click(function(){
+        $("button").not("#auto").attr("disabled",true);
+        isAuto = (isAuto+1)%2;
+        //$("#click").hide();
+        var timer;
+        timer = setInterval(function(){
+            if(cur < max && isAuto == 1){
+                setCurrentBar(++cur); 
+            }
+            else {
+                clearInterval(timer);
+                $("button").attr("disabled",false);
+            }
+        },500);
+    });
+    $("#next").click(function(){
+        // $("#auto").hide();
+        $("button").attr("disabled",true);
+        if(cur < max)
+            setCurrentBar(++cur);
+        setTimeout("$(\"button\").attr(\"disabled\",false);",500);
         //cur = cur % max;
         
+    });
+    $("#prev").click(function(){
+        $("button").attr("disabled",true);
+        cur--;
+        if(cur <= 0) cur = 0;
+        setCurrentBar(cur);
+        setTimeout("$(\"button\").attr(\"disabled\",false);",500);
+    });
+    $("#addYear").click(function(){
+        $("button").attr("disabled",true);
+        cur += 52;
+        if(cur > max) cur = max;
+        setCurrentBar(cur);
+        setTimeout("$(\"button\").attr(\"disabled\",false);",500);1
+    });
+    $("#firstPoint").click(function(){
+        $("button").attr("disabled",true);
+        cur = 709;
+        setCurrentBar(cur);
+        setTimeout("$(\"button\").attr(\"disabled\",false);",500);
+    });
+    $("#big4").click(function(){
+        $("button").attr("disabled",true);
+        cur = 1337;
+        setCurrentBar(cur);
+        setTimeout("$(\"button\").attr(\"disabled\",false);",500);
     });
 });
 
