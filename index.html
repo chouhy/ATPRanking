@@ -219,7 +219,8 @@ html,body{
         <button id="prev" style="font-size: 1.2vw" >Prev</button>
         <button id="auto" style="font-size: 1.2vw" >auto/stop</button>
         <button id="firstPoint" style="font-size: 1.2vw" >first week with points</button>
-        <button id="addYear" style="font-size: 1.2vw" >+52weeks</button>
+        <button id="addYear" style="font-size: 1.2vw" >+52</button>
+        <button id="minusYear" style="font-size: 1.2vw" >-52</button>
         <button id="big4" style="font-size: 1.2vw" >first big4 in top4</button>
          <span id='date' style="color: white;"></span></div>
 <div id="num1s" ></div>
@@ -393,7 +394,14 @@ $(document).ready(function(){
         cur += 52;
         if(cur > max) cur = max;
         setCurrentBar(cur);
-        setTimeout("$(\"button\").attr(\"disabled\",false);",500);1
+        setTimeout("$(\"button\").attr(\"disabled\",false);",500);
+    });
+    $("#minusYear").click(function(){
+        $("button").attr("disabled",true);
+        cur -= 52;
+        if(cur <= 0 ) cur = 0;
+        setCurrentBar(cur);
+        setTimeout("$(\"button\").attr(\"disabled\",false);",500);
     });
     $("#firstPoint").click(function(){
         $("button").attr("disabled",true);
