@@ -232,7 +232,13 @@ html,body{
 var isSet=0;
 var isAuto=0;
 var flag ='https://www.atpworldtour.com/en/~/media/images/flags/';
-var num1s=[];
+var num1s=['IlieNastase','JohnNewcombe','JimmyConnors','BjornBorg',
+'JohnMcEnroe','IvanLendl','MatsWilander','StefanEdberg',
+'BorisBecker','JimCourier','PeteSampras','AndreAgassi',
+'ThomasMuster','MarceloRios','CarlosMoya','YevgenyKafelnikov',
+'PatrickRafter','MaratSafin','GustavoKuerten','LleytonHewitt',
+'JuanCarlosFerrero','AndyRoddick','RogerFederer','RafaelNadal',
+'NovakDjokovic','AndyMurray'];
 var color = ["#ff66ff","#ff0000","#0066cc","#009933",
             "#3333ff","#ff6600","#ffb31a","#a64dff",
             "#ff1a1a","#004280","#ff5500","#ff3300",
@@ -244,6 +250,10 @@ $.get("./data/ATPRankingHistory",function(data,status){
         rank = data.split('\n');
         max = rank.length -2;
 });
+for (var i = 0; i < num1s.length;i++){
+    tempImg = new Image();
+    tempImg.src = "./number1s/"+num1s[i]+".png";
+}
 var maxPoint;
 var map = [0,'no1','no2','no3','no4','no5','no6','no7','no8','no9','no10'];
 var position = {no1:7,no2:15,no3:23,no4:31,no5:39,no6:47,no7:55,no8:63,no9:71,no10:79};
@@ -283,8 +293,6 @@ function update(raw){
             $("#picName").text(info[2]);
             $("#consecWeek").text("1");
         }
-        if(num1s.indexOf(info[2]) == -1)
-            num1s.push(info[2]);
     }
     //info[1] = country
     //info[2] = player name
