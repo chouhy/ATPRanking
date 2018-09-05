@@ -229,6 +229,7 @@ html,body{
   
 
 <script>
+$("button").attr("disabled",true);
 var isSet=0;
 var isAuto=0;
 var flag ='https://www.atpworldtour.com/en/~/media/images/flags/';
@@ -366,6 +367,7 @@ function setCurrentBar(index=0){
 }
 $(document).ready(function(){
     //$("#click").hide();
+    $("button").attr("disabled",false);
     $("#auto").click(function(){
         $("button").not("#auto").attr("disabled",true);
         isAuto = (isAuto+1)%2;
