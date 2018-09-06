@@ -216,12 +216,12 @@ html,body{
     <div class="rankTags" style=" top:81vh;" >NO.10</div>
 
     <div class="topline"><button id="next" style="font-size: 1.2vw" >Next</button>
-        <button id="prev" style="font-size: 1.2vw" >Prev</button>
-        <button id="auto" style="font-size: 1.2vw" >auto/stop</button>
-        <button id="firstPoint" style="font-size: 1.2vw" >first week with points</button>
-        <button id="addYear" style="font-size: 1.2vw" >+52</button>
-        <button id="minusYear" style="font-size: 1.2vw" >-52</button>
-        <button id="big4" style="font-size: 1.2vw" >first big4 in top4</button>
+        <button disabled="true" id="prev" style="font-size: 1.2vw" >Prev</button>
+        <button disabled="true" id="auto" style="font-size: 1.2vw" >auto/stop</button>
+        <button disabled="true" id="firstPoint" style="font-size: 1.2vw" >first week with points</button>
+        <button disabled="true" id="addYear" style="font-size: 1.2vw" >+52</button>
+        <button disabled="true" id="minusYear" style="font-size: 1.2vw" >-52</button>
+        <button disabled="true" id="big4" style="font-size: 1.2vw" >first big4 in top4</button>
          <span id='date' style="color: white;"></span></div>
 <div id="num1s" ></div>
     <div class="pic" style="display: none;"><span id ="picName"></span> .consecutive:<span id="consecWeek"></span><br><img id="number1Pic"  height="90%" src=""></div>
@@ -229,7 +229,6 @@ html,body{
   
 
 <script>
-$("button").attr("disabled",true);
 var isSet=0;
 var isAuto=0;
 var flag ='https://www.atpworldtour.com/en/~/media/images/flags/';
@@ -251,6 +250,7 @@ $.get("./data/ATPRankingHistory",function(data,status){
         rank = data.split('\n');
         max = rank.length -2;
 });
+
 for (var i = 0; i < num1s.length;i++){
     tempImg = new Image();
     tempImg.src = "./number1s/"+num1s[i]+".png";
@@ -366,7 +366,6 @@ function setCurrentBar(index=0){
     isSet = 1;
 }
 $(document).ready(function(){
-    //$("#click").hide();
     $("button").attr("disabled",false);
     $("#auto").click(function(){
         $("button").not("#auto").attr("disabled",true);
