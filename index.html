@@ -230,6 +230,7 @@ html,body{
   
 
 <script>
+var dataLoaded = 0;
 var Cached = 0;
 var isSet=0;
 var isAuto=0;
@@ -251,6 +252,7 @@ var cur = -1;
 $.get("./data/ATPRankingHistory",function(data,status){
         rank = data.split('\n');
         max = rank.length -2;
+        dataLoaded = 1;
 });
 
 for (var i = 0; i < num1s.length;i++){
@@ -371,7 +373,7 @@ function setCurrentBar(index=0){
 $(document).ready(function(){
     var loading;
     loading = setInterval(function(){
-        if(Cached) {
+        if(Cached && dataLoaded) {
             clearInterval(loading);
             $("button").attr("disabled",false);
         }
