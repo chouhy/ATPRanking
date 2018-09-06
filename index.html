@@ -215,7 +215,8 @@ html,body{
     <div class="rankTags" style=" top:73vh;" >NO.9</div>
     <div class="rankTags" style=" top:81vh;" >NO.10</div>
 
-    <div class="topline"><button id="next" style="font-size: 1.2vw" >Next</button>
+    <div class="topline">
+        <button disabled="true" id="next" style="font-size: 1.2vw" >Next</button>
         <button disabled="true" id="prev" style="font-size: 1.2vw" >Prev</button>
         <button disabled="true" id="auto" style="font-size: 1.2vw" >auto/stop</button>
         <button disabled="true" id="firstPoint" style="font-size: 1.2vw" >first week with points</button>
@@ -229,6 +230,7 @@ html,body{
   
 
 <script>
+var Cached = 0;
 var isSet=0;
 var isAuto=0;
 var flag ='https://www.atpworldtour.com/en/~/media/images/flags/';
@@ -254,6 +256,7 @@ $.get("./data/ATPRankingHistory",function(data,status){
 for (var i = 0; i < num1s.length;i++){
     tempImg = new Image();
     tempImg.src = "./number1s/"+num1s[i]+".png";
+    if(i == num1s.length-1) Cached = 1;
 }
 var maxPoint;
 var map = [0,'no1','no2','no3','no4','no5','no6','no7','no8','no9','no10'];
@@ -366,7 +369,13 @@ function setCurrentBar(index=0){
     isSet = 1;
 }
 $(document).ready(function(){
-    $("button").attr("disabled",false);
+    var loading;
+    loading = setInterval(function(){
+        if(Cached) {
+            clearInterval(loading);
+            $("button").attr("disabled",false);
+        }
+    },100);
     $("#auto").click(function(){
         $("button").not("#auto").attr("disabled",true);
         isAuto = (isAuto+1)%2;
